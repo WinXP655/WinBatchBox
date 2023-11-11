@@ -5,28 +5,6 @@ Minimal OS: Windows 2000
 Unsupported OS: Linux, MacOS, Windows NT 4.0 and lower
 Language: English
 
-After startup you see this window:
-(If run Right Mouse Button->Run as Admin, Windows 7+)
-╔═══════════════════════════════════════════════════════════════╗
-║ [C:\] Administrator: WinShell - Admin             │_│ │[]│ │X│║
-╟────────────────────────────────────────────────────────────┬─┬╢
-║Welcome to WinShell                                         │▲│║
-║To see new features - enter command "whatnew"               │█│║
-║Compiled on 27 October 2023 15:46                           │ │║
-║Is Admin: True                                              │ │║
-║                                                            │ │║
-║C:\Download\wshell#                                         │ │║
-║>hello                                                      │ │║
-║Hello, world!                                               │ │║
-║                                                            │ │║
-║C:\Download\wshell#                                         │ │║
-║>_                                                          │ │║
-║                                                            │ │║
-║                                                            │ │║
-║                                                            │ │║
-║                                                            │▼│║
-╚════════════════════════════════════════════════════════════╧═╧╝
-
 Basic commands. You cn find other command in WinShell help
 Help - Help page
 IsAdmin - Check admin rights
