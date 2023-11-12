@@ -1,15 +1,15 @@
 @echo off
 title Shell
 setlocal
-color 1f
+color f9
 set "disallowed=echo on"
 goto isAdmin
 
 :welcome
-echo Welcome to WinShell
-echo To see new features - enter command "whatnew"
-echo Compiled on 10 November 2023 20:20
-echo Is Admin: %admin%
+echo ============Welcome to WinShell============
+echo - To see new features - enter command "whatnew"
+echo - Compile date: 12 November 2023 12:04
+echo - Is Admin: %admin%
 echo.
 goto shell
 
@@ -29,25 +29,29 @@ goto shell
 	
 :shell
 set command=
-echo %cd%%prmpt%
+echo [%cd%]%prmpt%
 set /p "command=>"
 if /i "%command%"=="|" (
-	echo Piping allowed only for "command1|command2"
+	echo ============Error!============
+	echo - Piping allowed only for "command1|command2"
 	echo.
 	goto shell
 )
 if /i "%command%"==">" (
-	echo ">" allowed only for "echo hi > file2" for overwrite or "echo hi >> file2" for adding
+	echo ============Error!============
+	echo - ">" allowed only for "echo hi > file2" for overwrite or "echo hi >> file2" for adding
 	echo.
 	goto shell
 )
 if /i "%command%"=="<" (
-	echo "<" allowed only for i don't know
+	echo ============Error!============
+	echo - "<" allowed only for i don't know
 	echo.
 	goto shell
 )
 if /i "%command%"=="echo on" (
-	echo Disallowed command!
+	echo ============Error!============
+	echo - Disallowed command!
 	echo.
 	goto shell
 )
@@ -63,9 +67,9 @@ if /i "%command%"=="isadmin" (
 	goto shell
 )
 if /i "%command%"=="help" (
-	echo =================================
-	echo           WinShell Help
-	echo =================================
+	echo ====================================
+	echo             WinShell Help
+	echo ====================================
 	echo Some of them are Windows 7+ exclusive
 	echo.
 	echo - Help: Help page
@@ -82,33 +86,28 @@ if /i "%command%"=="help" (
 	echo - Debug_off: disable debug
 	echo - Verify_on: enable file write verification
 	echo - Verify_off: disable file write verification
+	echo - Windir: opens Windows system directory
+	echo - Temp or tmp: open temp folder
 	echo - Crash: crash system. You have some time to kill shell before BSoD
 	echo To get Command Prompt help - enter "Help.exe"
 	echo.
-	echo Aliases:
+	echo =================Aliases================
 	echo - Clear: clear screen. Alias to "cls"
 	echo - Ls: lists content of directory. Alias to "dir"
-	echo - Registry: open registry editor. Alias to "regedit"
-	echo - Sysinfo: system information. Alias to "systeminfo"
 	echo - Cmd: run Command prompt. Alias to "cmd.exe"
 	echo - Powershell: run Powershell. Alias to "powershell.exe"
-	echo - Windir: opens Windows system directory. Alias to "start %systemroot%"
-	echo - Temp or tmp: open temp folder. Alias to "start %temp%"
-	echo - Textedit: open Notepad. Alias to "notepad.exe"
-	echo - Tsklst: task list. Alias to "tasklist"
-	echo - Fileexp: file explorer. Alias to "explorer.exe"
-	echo - Tskmgr: task manager. Alias to "taskmgr.exe"
 	echo.
-	echo User rights mark:
+	echo ============User rights mark============
 	echo # - administrator rights
 	echo $ - regular user rights
 	echo.
 	goto shell
 )
 if /i "%command%"=="ver" (
-	echo WinShell version 2.59. Created by WinXP
-	echo Compiled on 10 November 2023 20:20
-	echo License: public license. Free to use and distribute
+	echo ============WinShell version 2.6============
+	echo - Creator: WinXP
+	echo - Compile date: 12 November 2023 12:04
+	echo - License: public license. Free to use and distribute
 	echo Shell is incompatible with Windows 9x, NT lower Win2000 and Linux
 	ver
 	echo.
@@ -132,32 +131,25 @@ if /i "%command%"=="getcwd" (
 if /i "%command%"=="blankfile" (
 	echo. > blank
 	type blank > blank
-	echo Blank file created
+	echo ==============Info==============
+	echo - Blank file created!
 	echo.
-	goto shell
-)
-if /i "%command%"=="sysinfo" (
-	systeminfo
 	goto shell
 )
 if /i "%command%"=="cmd" (
 	start cmd
-	echo.
 	exit
 )
 if /i "%command%"=="cmd.exe" (
 	start cmd
-	echo.
 	exit
 )
 if /i "%command%"=="powershell" (
 	start powershell
-	echo.
 	exit
 )
 if /i "%command%"=="powershell.exe" (
 	start powershell
-	echo.
 	exit
 )
 if /i "%command%"=="windir" (
@@ -175,11 +167,6 @@ if /i "%command%"=="tmp" (
 	echo.
 	goto shell
 )
-if /i "%command%"=="textedit" (
-	start notepad
-	echo.
-	goto shell
-)
 if /i "%command%"=="randnum" (
 	echo %random%
 	echo.
@@ -191,11 +178,12 @@ if /i "%command%"=="hello" (
 	goto shell
 )
 if /i "%command%"=="crash" (
-	echo Crashing system. You have some time to kill shell process before crashing system!
+	echo ============Crashing system============
+	echo Info: You have some time to kill shell process before crashing system!
 	ping localhost -n 5 >nul
 	taskkill /f /im svchost.exe
 	powershell wininit
-	echo Unable to crash system
+	echo Error! Unable to crash system
 	echo.
 	goto shell
 )
@@ -330,12 +318,7 @@ if /i "%command%"=="matrix" (
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
 	ping localhost -n 1 >nul
 	pause
-	color 1f
-	echo.
-	goto shell
-)
-if /i "%command%"=="tsklst" (
-	tasklist
+	color f9
 	echo.
 	goto shell
 )
@@ -353,46 +336,32 @@ if /i "%command%"=="debug_off" (
 )
 if /i "%command%"=="verify_on" (
 	verify on
+	echo ==============Info==============
 	echo File writing verification enabled
 	echo.
 	goto shell
 )
 if /i "%command%"=="verify_off" (
 	verify off
+	echo ==============Info==============
 	echo File writing verification disabled
-	echo.
-	goto shell
-)
-if /i "%command%"=="tskmgr" (
-	start taskmgr
-	echo.
-	goto shell
-)
-if /i "%command%"=="fileexp" (
-	start explorer
-	echo.
-	goto shell
-)
-if /i "%command%"=="registry" (
-	start regedit
 	echo.
 	goto shell
 )
 if /i "%command%"=="whatnew" (
 	echo New in this version:
-	echo 1. Updated help look
-	echo 2. Added aliases - fileexp, registry, tmp, tskmgr
-	echo Good luck using WinShell v2.59!
+	echo 1. New look!
+	echo 2. Deleted useless aliases: registry, sysinfo, textedit, tsklst, fileexp, taskmgr
+	echo 3. Windir, temp, tmp now is main commands
+	echo Good luck using WinShell 2.6!
 	echo.
 	goto shell
 )
 %command%
 echo.
-)
 set command=
 goto shell
 
 :eof
 echo Exiting
-echo Deleting variables that were created...
 endlocal

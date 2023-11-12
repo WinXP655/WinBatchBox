@@ -1,10 +1,11 @@
 @echo off
 setlocal
+color 1f
 set "disallowed=echo on"
 goto isAdmin
 
 :welcome
-echo WinShell lite
+echo ============WinShell lite============
 echo.
 goto shell
 
@@ -22,7 +23,8 @@ goto shell
 	
 :shell
 set command=
-set /p "command=%cd%%prmpt% "
+echo %cd%%prmpt%
+set /p "command=>"
 if /i "%command%"=="|" (
 	goto shell
 )
@@ -55,6 +57,7 @@ if /i "%command%"=="help" (
 	echo Debug_off - disable debug
 	echo Verify_on - enable file write verification
 	echo Verify_off - disable file write verification
+	echo Temp or tmp - open temp folder
 	echo.
 	goto shell
 )
@@ -111,10 +114,20 @@ if /i "%command%"=="verify_off" (
 	echo.
 	goto shell
 )
+if /i "%command%"=="temp" (
+	start %temp%
+	echo.
+	goto shell
+)
+if /i "%command%"=="tmp" (
+	start %temp%
+	echo.
+	goto shell
+)
 if /i "%command%"=="whatnew" (
 	echo New in this version:
-	echo 1. Added commands - verify_on, verify_off
-	echo Good luck using WinShell lite v1.01!
+	echo 1. Added commands - temp, tmp
+	echo Good luck using WinShell lite v1.02!
 	echo.
 	goto shell
 )
