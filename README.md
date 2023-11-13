@@ -1,6 +1,6 @@
 # WinShell (Original: WinShell by WinXP655)
 
-**WinShell** is a command-line shell designed for **Windows**. It is written in **Batch** and provides basic commands for system management.
+**WinShell** is a command-line shell designed for **Windows**. It is written in **Batch** and provides not only basic commands for system management, but a lot of other commands that can be useful.
 
 ## Features:
 - **Portable Mode**: The shell operates in Portable mode, meaning it can be used without installation.
