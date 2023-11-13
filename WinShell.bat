@@ -6,9 +6,9 @@ set "disallowed=echo on"
 goto isAdmin
 
 :welcome
-echo ============Welcome to WinShell============
+echo ==========Welcome to WinShell Cmd==========
 echo - To see new features - enter command "whatnew"
-echo - Compile date: 12 November 2023 12:04
+echo - Compile date: 13 November 2023 15:30
 echo - Is Admin: %admin%
 echo.
 goto shell
@@ -68,7 +68,7 @@ if /i "%command%"=="isadmin" (
 )
 if /i "%command%"=="help" (
 	echo ====================================
-	echo             WinShell Help
+	echo           WinShell Cmd Help
 	echo ====================================
 	echo Some of them are Windows 7+ exclusive
 	echo.
@@ -104,9 +104,9 @@ if /i "%command%"=="help" (
 	goto shell
 )
 if /i "%command%"=="ver" (
-	echo ============WinShell version 2.6============
+	echo =========WinShell Cmd version 2.61=========
 	echo - Creator: WinXP
-	echo - Compile date: 12 November 2023 12:04
+	echo - Compile date: 13 November 2023 15:30
 	echo - License: public license. Free to use and distribute
 	echo Shell is incompatible with Windows 9x, NT lower Win2000 and Linux
 	ver
@@ -324,36 +324,36 @@ if /i "%command%"=="matrix" (
 )
 if /i "%command%"=="debug_on" (
 	prompt $g
-	echo Debug enabled
+	echo ==============Info==============
+	echo - Debug enabled
 	echo on
 	goto shell
 )
 if /i "%command%"=="debug_off" (
 	prompt $g
-	echo Debug disabled
+	echo ==============Info==============
+	echo - Debug disabled
 	echo off
 	goto shell
 )
 if /i "%command%"=="verify_on" (
 	verify on
 	echo ==============Info==============
-	echo File writing verification enabled
+	echo - File writing verification enabled
 	echo.
 	goto shell
 )
 if /i "%command%"=="verify_off" (
 	verify off
 	echo ==============Info==============
-	echo File writing verification disabled
+	echo - File writing verification disabled
 	echo.
 	goto shell
 )
 if /i "%command%"=="whatnew" (
-	echo New in this version:
-	echo 1. New look!
-	echo 2. Deleted useless aliases: registry, sysinfo, textedit, tsklst, fileexp, taskmgr
-	echo 3. Windir, temp, tmp now is main commands
-	echo Good luck using WinShell 2.6!
+	echo ==============New in this version==============
+	echo - 1. New design in places, where it isn't updated. Some places are from 0.1 Beta 0
+	echo Good luck using WinShell 2.61!
 	echo.
 	goto shell
 )
@@ -363,5 +363,5 @@ set command=
 goto shell
 
 :eof
-echo Exiting
+echo ==============Exiting==============
 endlocal
