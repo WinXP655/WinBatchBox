@@ -360,69 +360,10 @@ if /i "%command%"=="suspend" (
 	echo.
 	goto shell
 )
-if /i "%command%"=="tour" (
-	verify off
-	echo =============Tour===============
-	echo - Welcome to WinShell Cmd tour!
-	echo - This Shell is written on Batch. This does this shell fast, lightweight and stable
-	echo Press any key to start tour!
-	pause
-	cls
-	echo When you start WinShell Cmd you see this prompt
-	echo.
-	echo [C:\WINDOWS\system32]$
-	echo (greater then symbol)
-	echo.
-	echo Parts of the prompt:
-	echo 1. $ - regular user rights, # - admin rights
-	echo 2. [C:\WINDOWS\System32] - your path
-	echo 3. (greater then symbol) - you are typing command here
-	pause
-	cls
-	echo How to use commands?
-	echo There is 2 types of commands: main and aliases
-	echo.
-	echo Aliases do not accept arguments! This is just links to Cmd's commands
-	echo Example:
-	echo 1. "cmd" or "cmd.exe" open Command Prompt and exit the shell
-	echo 2. "suspend" just an alias to "pause" command
-	echo.
-	echo Main commands of shell can be useful in some situations
-	echo Example:
-	echo 1. "Isadmin" shows admin rights. This can show you 2 values: "True" - admin, "False" - not an admin
-	echo 2. "Debug_on" and "Debug_off" can be useful is detecting errors in shell
-	echo    If you find them - write me into "Issues" on GitHub: https://github.com/WinXP655/WinShell
-	pause
-	cls
-	echo Basic Command Prompt commands and other
-	echo.
-	echo To owerwrite file with your contents enter this:
-	echo "echo (your text) > (some file)"
-	echo To add to file:
-	echo "echo (your text) >> (some file)"
-	echo.
-	echo To delete file(s):
-	echo del (somefile)
-	echo To delete folder (if empty):
-	echo rd (folder)
-	echo.
-	echo To rename folder or file:
-	echo rename (file) (new filename)
-	echo.
-	echo To copy file:
-	echo copy (file) (new name)
-	echo.
-	echo To move file:
-	echo move (file) (folder)
-	pause
-	cls
-	echo The tour is ended! I think you like WinShell Cmd
-	echo.
-	goto shell
-)
+
 if /i "%command%"=="whatnew" (
 	echo ==============New in this version==============
-	echo - 1. New commands - tour, suspend
+	echo - 1. New commands - suspend
 	echo Good luck using WinShell 2.62!
 	echo.
 	goto shell
