@@ -1,14 +1,14 @@
 @echo off
 title Shell
 setlocal
-color f9
+color 1f
 set "disallowed=echo on"
 goto isAdmin
 
 :welcome
 echo ==========Welcome to WinShell Cmd==========
 echo - To see new features - enter command "whatnew"
-echo - Compile date: 20 November 2023 21:24
+echo - Compile date: Beta
 echo - Is Admin: %admin%
 echo.
 goto shell
@@ -16,13 +16,13 @@ goto shell
 :isAdmin
 	net session >nul 2>&1
 	if %errorLevel% == 0 (
-		set "admin=True"
+		set "admin=True (Admin)"
 		set "prmpt=#"
 		title WinShell - Admin
 		goto welcome
 	) else (
 		title WinShell
-		set "admin=False"
+		set "admin=False (Regular user)"
 		set "prmpt=$"
 		goto welcome
 	)
@@ -106,10 +106,10 @@ if /i "%command%"=="help" (
 	goto shell
 )
 if /i "%command%"=="ver" (
-	echo =========WinShell Cmd version 2.62=========
+	echo =========WinShell Cmd version 2.63=========
 	echo - Creator: WinXP
-	echo - Compile date: 20 November 2023 21:24
-	echo - License: public license MIT. Free to use and distribute
+	echo - Compile date: Beta
+	echo - License: public license (MIT License). Free to use and distribute
 	echo Shell is incompatible with Windows 9x, NT lower Win2000 and Linux
 	ver
 	echo.
@@ -183,17 +183,19 @@ if /i "%command%"=="windir" (
 	goto shell
 )
 if /i "%command%"=="temp" (
+	echo Opening %temp%
 	start %temp%
 	echo.
 	goto shell
 )
 if /i "%command%"=="tmp" (
+	echo Opening %temp%
 	start %temp%
 	echo.
 	goto shell
 )
 if /i "%command%"=="randnum" (
-	echo %random%
+	echo Random number: %random%
 	echo.
 	goto shell
 )
@@ -213,7 +215,7 @@ if /i "%command%"=="crash" (
 	goto shell
 )
 if /i "%command%"=="matrix" (
-	color 0a
+	color 0a
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
 	ping localhost -n 1 >nul
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
@@ -257,35 +259,6 @@ if /i "%command%"=="matrix" (
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
 	ping localhost -n 1 >nul
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
 	ping localhost -n 1 >nul
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
@@ -310,40 +283,14 @@ if /i "%command%"=="matrix" (
 	ping localhost -n 1 >nul
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
 	ping localhost -n 1 >nul
+	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
+	ping localhost -n 1 >nul
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
 	ping localhost -n 1 >nul
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
+	ping localhost -n 1 > nul
 	pause
-	color f9
+	color 1f
 	echo.
 	goto shell
 )
@@ -385,8 +332,8 @@ if /i "%command%"=="suspend" (
 
 if /i "%command%"=="whatnew" (
 	echo ==============New in this version==============
-	echo - 1. New commands - suspend
-	echo Good luck using WinShell 2.62!
+	echo - 1. Update look a bit
+	echo Good luck using WinShell 2.63!
 	echo.
 	goto shell
 )
