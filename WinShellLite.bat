@@ -26,12 +26,15 @@ set command=
 echo %cd%%prmpt%
 set /p "command=>"
 if /i "%command%"=="|" (
+	echo.
 	goto shell
 )
 if /i "%command%"==">" (
+	echo.
 	goto shell
 )
 if /i "%command%"=="<" (
+	echo.
 	goto shell
 )
 if /i "%command%"=="exit" (
@@ -42,11 +45,14 @@ if /i "%command%"=="echo on" (
 	goto shell
 )
 if /i "%command%"=="isadmin" (
-	echo %admin%
+	echo Rights: %admin%
 	echo.
 	goto shell
 )
 if /i "%command%"=="help" (
+	echo ================================
+	echo        WinShell Lite Help
+	echo ================================
 	echo Help - Help page
 	echo IsAdmin - Check administrator rights
 	echo Ver - version of Shell and system
@@ -62,7 +68,8 @@ if /i "%command%"=="help" (
 	goto shell
 )
 if /i "%command%"=="ver" (
-	echo WinShell lite 1.0. Based on WinShell 2.57 full
+	echo =======WinShell lite 1.03=======
+	echo - Based on: WinShell 2.57 full
 	ver
 	echo.
 	goto shell
@@ -70,41 +77,49 @@ if /i "%command%"=="ver" (
 if /i "%command%"=="blankfile" (
 	echo. > blank
 	type blank > blank
-	echo Blank file created
+	echo ==============Info==============
+	echo - Blank file created
 	echo.
 	goto shell
 )
 if /i "%command%"=="cmd" (
+	echo ========Opening Cmd.exe=========
 	start cmd
 	exit
 )
 if /i "%command%"=="cmd.exe" (
+	echo ========Opening Cmd.exe=========
 	start cmd
 	exit
 )
 if /i "%command%"=="powershell" (
+	echo =====Opening Powershell.exe=====
 	start powershell
 	exit
 )
 if /i "%command%"=="powershell.exe" (
+	echo =====Opening Powershell.exe=====
 	start powershell
 	exit
 )
 if /i "%command%"=="debug_on" (
 	prompt $g
-	echo Debug enabled
+	echo ==============Info==============
+	echo - Debug enabled
 	echo on
 	goto shell
 )
 if /i "%command%"=="debug_off" (
 	prompt $g
-	echo Debug disabled
+	echo ==============Info==============
+	echo - Debug disabled
 	echo off
 	goto shell
 )
 if /i "%command%"=="verify_on" (
 	verify on
-	echo File writing verification enabled
+	echo ==============Info==============
+	echo - File writing verification enabled
 	echo.
 	goto shell
 )
@@ -115,19 +130,21 @@ if /i "%command%"=="verify_off" (
 	goto shell
 )
 if /i "%command%"=="temp" (
+	echo ==========Opening %temp%========
 	start %temp%
 	echo.
 	goto shell
 )
 if /i "%command%"=="tmp" (
+	echo ==========Opening %temp%========
 	start %temp%
 	echo.
 	goto shell
 )
 if /i "%command%"=="whatnew" (
 	echo New in this version:
-	echo 1. Added commands - temp, tmp
-	echo Good luck using WinShell lite v1.02!
+	echo 1. Updated design!
+	echo Good luck using WinShell lite v1.03!
 	echo.
 	goto shell
 )

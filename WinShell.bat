@@ -8,7 +8,7 @@ goto isAdmin
 :welcome
 echo ==========Welcome to WinShell Cmd==========
 echo - To see new features - enter command "whatnew"
-echo - Compile date: Beta
+echo - Compile date: 21 November 2023 13:55
 echo - Is Admin: %admin%
 echo.
 goto shell
@@ -16,13 +16,13 @@ goto shell
 :isAdmin
 	net session >nul 2>&1
 	if %errorLevel% == 0 (
-		set "admin=True (Admin)"
+		set "admin=True"
 		set "prmpt=#"
 		title WinShell - Admin
 		goto welcome
 	) else (
 		title WinShell
-		set "admin=False (Regular user)"
+		set "admin=False"
 		set "prmpt=$"
 		goto welcome
 	)
@@ -32,25 +32,25 @@ set command=
 echo [%cd%]%prmpt%
 set /p "command=>"
 if /i "%command%"=="|" (
-	echo ============Error!============
+	echo =============Error!=============
 	echo - Piping allowed only for "command1|command2"
 	echo.
 	goto shell
 )
 if /i "%command%"==">" (
-	echo ============Error!============
+	echo =============Error!=============
 	echo - ">" allowed only for "echo hi > file2" for overwrite or "echo hi >> file2" for adding
 	echo.
 	goto shell
 )
 if /i "%command%"=="<" (
-	echo ============Error!============
+	echo =============Error!=============
 	echo - "<" allowed only for i don't know
 	echo.
 	goto shell
 )
 if /i "%command%"=="echo on" (
-	echo ============Error!============
+	echo =============Error!=============
 	echo - Disallowed command!
 	echo.
 	goto shell
@@ -62,7 +62,7 @@ if /i "%command%"=="end" (
 	goto eof
 )
 if /i "%command%"=="isadmin" (
-	echo %admin%
+	echo Rights: %admin%
 	echo.
 	goto shell
 )
@@ -95,8 +95,8 @@ if /i "%command%"=="help" (
 	echo =================Aliases================
 	echo - Clear: clear screen. Alias to "cls"
 	echo - Ls: lists content of directory. Alias to "dir"
-	echo - Cmd: run Command prompt. Alias to "start cmd.exe & exit"
-	echo - Powershell: run Powershell. Alias to "start powershell.exe & exit"
+	echo - Cmd: run Command prompt. Alias to "cmd.exe"
+	echo - Powershell: run Powershell. Alias to "powershell.exe"
 	echo - Suspend: suspend shell executing. Alias to "pause"
 	echo.
 	echo ============User rights mark============
@@ -106,10 +106,10 @@ if /i "%command%"=="help" (
 	goto shell
 )
 if /i "%command%"=="ver" (
-	echo =========WinShell Cmd version 2.63=========
+	echo ==========WinShell Cmd version 2.63==========
 	echo - Creator: WinXP
-	echo - Compile date: Beta
-	echo - License: public license (MIT License). Free to use and distribute
+	echo - Compile date: 21 November 2023 13:55
+	echo - License: MIT public license
 	echo Shell is incompatible with Windows 9x, NT lower Win2000 and Linux
 	ver
 	echo.
@@ -138,58 +138,40 @@ if /i "%command%"=="blankfile" (
 	echo.
 	goto shell
 )
-if /i "%command%"=="cmd" (cmd
-	echo Starting cmd.exe
+if /i "%command%"=="cmd" (
+	echo ========Opening Cmd.exe=========
 	start cmd
-	if "%errorlevel%"=="0" (
-		exit
-	) else (
-		echo ============Error!============
-		echo.
-		goto shell
+	exit
+)
 if /i "%command%"=="cmd.exe" (
-	echo Starting cmd.exe
+	echo ========Opening Cmd.exe=========
 	start cmd
-	if "%errorlevel%"=="0" (
-		exit
-	) else (
-		echo ============Error!============
-		echo.
-		goto shell
+	exit
 )
 if /i "%command%"=="powershell" (
-	echo Starting powershell.exe
+	echo =====Opening Powershell.exe=====
 	start powershell
-	if "%errorlevel%"=="0" (
-		exit
-	) else (
-		echo ============Error!============
-		echo.
-		goto shell
+	exit
 )
 if /i "%command%"=="powershell.exe" (
-	echo Starting powershell.exe
+	echo =====Opening Powershell.exe=====
 	start powershell
-	if "%errorlevel%"=="0" (
-		exit
-	) else (
-		echo ============Error!============
-		echo.
-		goto shell
-)
+	exit
+)
 if /i "%command%"=="windir" (
+	echo ======Opening %systemroot%======
 	start %windir%
 	echo.
 	goto shell
 )
 if /i "%command%"=="temp" (
-	echo Opening %temp%
+	echo ==========Opening %temp%========
 	start %temp%
 	echo.
 	goto shell
 )
 if /i "%command%"=="tmp" (
-	echo Opening %temp%
+	echo ==========Opening %temp%========
 	start %temp%
 	echo.
 	goto shell
@@ -205,17 +187,18 @@ if /i "%command%"=="hello" (
 	goto shell
 )
 if /i "%command%"=="crash" (
-	echo ============Crashing system============
-	echo Info: You have some time to kill shell process before crashing system!
-	ping localhost -n 5 >nul
+	echo ========Crashing system=========
+	echo - Info: You have some time to kill shell process before crashing system!
+	ping localhost -n 8 >nul
 	taskkill /f /im svchost.exe
 	powershell wininit
-	echo Error! Unable to crash system
+	echo =============Error!=============
+	echo - Unable to crash system
 	echo.
 	goto shell
 )
 if /i "%command%"=="matrix" (
-	color 0a
+	color 0a
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
 	ping localhost -n 1 >nul
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
@@ -259,7 +242,6 @@ if /i "%command%"=="matrix" (
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
 	ping localhost -n 1 >nul
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
 	ping localhost -n 1 >nul
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
 	ping localhost -n 1 >nul
@@ -277,18 +259,6 @@ if /i "%command%"=="matrix" (
 	ping localhost -n 1 >nul
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
 	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 >nul
-	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
-	ping localhost -n 1 > nul
 	pause
 	color 1f
 	echo.
@@ -323,16 +293,14 @@ if /i "%command%"=="verify_off" (
 	goto shell
 )
 if /i "%command%"=="suspend" (
-	verify off
 	echo =============Pause==============
 	pause
 	echo.
 	goto shell
 )
-
 if /i "%command%"=="whatnew" (
-	echo ==============New in this version==============
-	echo - 1. Update look a bit
+	echo ======New in this version=======
+	echo - 1. Updated look a bit
 	echo Good luck using WinShell 2.63!
 	echo.
 	goto shell
@@ -343,5 +311,5 @@ set command=
 goto shell
 
 :eof
-echo ==============Exiting==============
+echo =============Exiting=============
 endlocal
