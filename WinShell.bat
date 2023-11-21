@@ -90,7 +90,6 @@ if /i "%command%"=="help" (
 	echo - Windir: opens Windows system directory
 	echo - Temp or tmp: open temp folder
 	echo - Crash: crash system. You have some time to kill shell before BSoD
-	echo - Tour: tour for WinShell Cmd
 	echo To get Command Prompt help - enter "Help.exe"
 	echo.
 	echo =================Aliases================
