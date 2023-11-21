@@ -95,8 +95,8 @@ if /i "%command%"=="help" (
 	echo =================Aliases================
 	echo - Clear: clear screen. Alias to "cls"
 	echo - Ls: lists content of directory. Alias to "dir"
-	echo - Cmd: run Command prompt. Alias to "cmd.exe"
-	echo - Powershell: run Powershell. Alias to "powershell.exe"
+	echo - Cmd: run Command prompt. Alias to "start cmd.exe & exit"
+	echo - Powershell: run Powershell. Alias to "start powershell.exe & exit"
 	echo - Suspend: suspend shell executing. Alias to "pause"
 	echo.
 	echo ============User rights mark============
@@ -127,7 +127,7 @@ if /i "%command%"=="ls" (
 )
 if /i "%command%"=="getcwd" (
 	echo %cd%
-       echo.
+	echo.
 	goto shell
 )
 if /i "%command%"=="blankfile" (
@@ -138,22 +138,45 @@ if /i "%command%"=="blankfile" (
 	echo.
 	goto shell
 )
-if /i "%command%"=="cmd" (
+if /i "%command%"=="cmd" (cmd
+	echo Starting cmd.exe
 	start cmd
-	exit
-)
+	if "%errorlevel%"=="0" (
+		exit
+	) else (
+		echo ============Error!============
+		echo.
+		goto shell
 if /i "%command%"=="cmd.exe" (
+	echo Starting cmd.exe
 	start cmd
-	exit
+	if "%errorlevel%"=="0" (
+		exit
+	) else (
+		echo ============Error!============
+		echo.
+		goto shell
 )
 if /i "%command%"=="powershell" (
+	echo Starting powershell.exe
 	start powershell
-	exit
+	if "%errorlevel%"=="0" (
+		exit
+	) else (
+		echo ============Error!============
+		echo.
+		goto shell
 )
 if /i "%command%"=="powershell.exe" (
+	echo Starting powershell.exe
 	start powershell
-	exit
-)
+	if "%errorlevel%"=="0" (
+		exit
+	) else (
+		echo ============Error!============
+		echo.
+		goto shell
+)
 if /i "%command%"=="windir" (
 	start %windir%
 	echo.
