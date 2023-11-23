@@ -37,6 +37,12 @@ if /i "%command%"=="|" (
 	echo.
 	goto shell
 )
+if /i "%command%"=="||" (
+        echo =============Error!=============
+        echo - Piping allowed only for "command1||command2"
+        echo.
+        goto shell
+)
 if /i "%command%"==">" (
 	echo =============Error!=============
 	echo - ">" allowed only for "echo hi > file2" for overwrite or "echo hi >> file2" for adding
