@@ -29,6 +29,10 @@ if /i "%command%"=="|" (
 	echo.
 	goto shell
 )
+if /i "%command%"=="||" (
+  echo.
+  goto shell
+)
 if /i "%command%"==">" (
 	echo.
 	goto shell
