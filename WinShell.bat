@@ -2,13 +2,12 @@
 title Shell
 setlocal
 color 1f
-set "disallowed=echo on"
 goto isAdmin
 
 :welcome
 echo ==========Welcome to WinShell Cmd==========
 echo - To see new features - enter command "whatnew"
-echo - Compile date: 21 November 2023 13:55
+echo - Compile date: 1 December 2023 18:28
 echo - Is Admin: %admin%
 echo.
 goto shell
@@ -18,10 +17,10 @@ goto shell
 	if %errorLevel% == 0 (
 		set "admin=True"
 		set "prmpt=#"
-		title WinShell - Admin
+		title WinShell Cmd - Admin
 		goto welcome
 	) else (
-		title WinShell
+		title WinShell Cmd
 		set "admin=False"
 		set "prmpt=$"
 		goto welcome
@@ -37,12 +36,6 @@ if /i "%command%"=="|" (
 	echo.
 	goto shell
 )
-if /i "%command%"=="||" (
-        echo =============Error!=============
-        echo - Piping allowed only for "command1||command2"
-        echo.
-        goto shell
-)
 if /i "%command%"==">" (
 	echo =============Error!=============
 	echo - ">" allowed only for "echo hi > file2" for overwrite or "echo hi >> file2" for adding
@@ -52,6 +45,12 @@ if /i "%command%"==">" (
 if /i "%command%"=="<" (
 	echo =============Error!=============
 	echo - "<" allowed only for i don't know
+	echo.
+	goto shell
+)
+if /i "%command%"=="||" (
+	echo =============Error!=============
+	echo - Piping allowed only for "command1||command2"
 	echo.
 	goto shell
 )
@@ -96,6 +95,7 @@ if /i "%command%"=="help" (
 	echo - Windir: opens Windows system directory
 	echo - Temp or tmp: open temp folder
 	echo - Crash: crash system. You have some time to kill shell before BSoD
+	echo - Textfile: create and edit text file
 	echo To get Command Prompt help - enter "Help.exe"
 	echo.
 	echo =================Aliases================
@@ -112,10 +112,11 @@ if /i "%command%"=="help" (
 	goto shell
 )
 if /i "%command%"=="ver" (
-	echo ==========WinShell Cmd version 2.63==========
+	echo ============WinShell Cmd v2.64============
 	echo - Creator: WinXP
-	echo - Compile date: 21 November 2023 13:55
+	echo - Compile date: 1 December 2023 18:28
 	echo - License: MIT public license
+	echo - Download last version: https://github.com/WinXP655/WinShellCmd/releases
 	echo Shell is incompatible with Windows 9x, NT lower Win2000 and Linux
 	ver
 	echo.
@@ -127,6 +128,7 @@ if /i "%command%"=="clear" (
 	goto shell
 )
 if /i "%command%"=="ls" (
+	echo ============Listing=============
 	dir
 	echo.
 	goto shell
@@ -198,6 +200,7 @@ if /i "%command%"=="crash" (
 	ping localhost -n 8 >nul
 	taskkill /f /im svchost.exe
 	powershell wininit
+	echo.
 	echo =============Error!=============
 	echo - Unable to crash system
 	echo.
@@ -205,6 +208,20 @@ if /i "%command%"=="crash" (
 )
 if /i "%command%"=="matrix" (
 	color 0a
+	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
+	ping localhost -n 1 >nul
+	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
+	ping localhost -n 1 >nul
+	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
+	ping localhost -n 1 >nul
+	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
+	ping localhost -n 1 >nul
+	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
+	ping localhost -n 1 >nul
+	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
+	ping localhost -n 1 >nul
+	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
+	ping localhost -n 1 >nul
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
 	ping localhost -n 1 >nul
 	echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%%random%
@@ -304,10 +321,24 @@ if /i "%command%"=="suspend" (
 	echo.
 	goto shell
 )
+if /i "%command%"=="pause" (
+	echo =============Pause==============
+	pause
+	echo.
+	goto shell
+)
+if /i "%command%"=="textfile" (
+	echo ===========Text Edit============
+	echo - To save text press "Ctrl+Z"
+	copy con text.txt
+	pause
+	echo.
+	goto shell
+)
 if /i "%command%"=="whatnew" (
 	echo ======New in this version=======
-	echo - 1. Updated look a bit
-	echo Good luck using WinShell 2.63!
+	echo - 1. New command - textfile
+	echo Good luck using WinShell 2.64!
 	echo.
 	goto shell
 )
