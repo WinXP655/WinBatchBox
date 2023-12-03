@@ -2,12 +2,13 @@
 title Shell
 setlocal
 color 1f
+set "text=0"
 goto isAdmin
 
 :welcome
 echo ==========Welcome to WinShell Cmd==========
 echo - To see new features - enter command "whatnew"
-echo - Compile date: 1 December 2023 18:28
+echo - Compile date: 3 December 2023 21:00
 echo - Is Admin: %admin%
 echo.
 goto shell
@@ -33,39 +34,50 @@ set /p "command=>"
 if /i "%command%"=="|" (
 	echo =============Error!=============
 	echo - Piping allowed only for "command1|command2"
+	echo - Error logged in error.log
+	echo - Recovering from error...
 	echo.
+	echo %date% %time% - Invalid pipe: "%command%" >> error.log
 	goto shell
 )
 if /i "%command%"==">" (
 	echo =============Error!=============
 	echo - ">" allowed only for "echo hi > file2" for overwrite or "echo hi >> file2" for adding
+	echo - Error logged in error.log
+	echo - Recovering from error...
 	echo.
+	echo %date% %time% - Invalid redirection: "%command%" >> error.log
 	goto shell
 )
 if /i "%command%"=="<" (
 	echo =============Error!=============
 	echo - "<" allowed only for i don't know
+	echo - Error logged in error.log
+	echo - Recovering from error...
 	echo.
+	echo %date% %time% - Invalid input: "%command%" >> error.log
 	goto shell
 )
 if /i "%command%"=="||" (
 	echo =============Error!=============
 	echo - Piping allowed only for "command1||command2"
+	echo - Error logged in error.log
+	echo - Recovering from error...
 	echo.
+	echo %date% %time% - Invalid conditional pipe: "%command%" >> error.log
 	goto shell
 )
 if /i "%command%"=="echo on" (
 	echo =============Error!=============
 	echo - Disallowed command!
+	echo - Error logged in error.log
+	echo - Recovering from error...
 	echo.
+	echo %date% %time% - Disallowed command: %command% >> error.log
 	goto shell
 )
-if /i "%command%"=="exit" (
-	goto eof
-)
-if /i "%command%"=="end" (
-	goto eof
-)
+if /i "%command%"=="exit" goto eof
+if /i "%command%"=="end" goto eof
 if /i "%command%"=="isadmin" (
 	echo Rights: %admin%
 	echo.
@@ -112,9 +124,9 @@ if /i "%command%"=="help" (
 	goto shell
 )
 if /i "%command%"=="ver" (
-	echo ============WinShell Cmd v2.64============
+	echo ============WinShell Cmd v2.65============
 	echo - Creator: WinXP
-	echo - Compile date: 1 December 2023 18:28
+	echo - Compile date: 3 December 2023 21:00
 	echo - License: MIT public license
 	echo - Download last version: https://github.com/WinXP655/WinShellCmd/releases
 	echo Shell is incompatible with Windows 9x, NT lower Win2000 and Linux
@@ -335,10 +347,32 @@ if /i "%command%"=="textfile" (
 	echo.
 	goto shell
 )
+if /i "%command%"=="clean_tmp" (
+	echo =======Cleaning %temp%=======
+	rd %temp% /s/q
+	echo.
+	goto shell
+)
+if /i "%command%"=="shutdown" (
+    echo ===========Shutdown==========
+	shutdown.exe -s -t 0
+)
+if /i "%command%"=="reboot" (
+    echo ============Reboot===========
+	shutdown.exe -r -t 0
+)
+if /i "%command%"=="logoff" (
+    echo ======Log off %username%=====
+	shutdown.exe -l
+)
+if /i "%command%"=="sleep" (
+    echo ============Sleep============
+	shutdown.exe -h
+)
 if /i "%command%"=="whatnew" (
 	echo ======New in this version=======
-	echo - 1. New command - textfile
-	echo Good luck using WinShell 2.64!
+	echo - 1. New command - clean_tmp, dice, shutdown, sleep, reboot, logoff
+	echo Good luck using WinShell 2.65!
 	echo.
 	goto shell
 )
