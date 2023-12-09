@@ -16,10 +16,6 @@
 - **Ls** or **dir**: Shows the contents of the current directory.
 - **Exit** or **end**: Exits the shell.
 
-### MSVCRT.DLL:
-- This file is used for running on older versions of **Windows**.
-- **Windows 2000** may contain this file.
-
 If you're modifying the project's code, be sure to add the original attribution: "Original: WinShell by WinXP655."
 
 Remember that not specifying the original name and author would violate the terms of the **MIT License**!
