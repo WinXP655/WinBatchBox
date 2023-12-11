@@ -1,8 +1,8 @@
-# WinShell
+# Win BatchBox
 
 Hello, developers! **WinShell Cmd 2.66** will be released *30 December 2023* because I want to add many features. This version will have new branding - **Win BatchBox**
 
-**WinShell** is a command-line shell designed for **Windows**. It is written in **Batch** and provides not only basic commands for system management, but a lot of other commands that can be useful.
+**Win BatchBox** is a command-line shell designed for **Windows**. It is written in **Batch** and provides not only basic commands for system management, but a lot of other commands that can be useful.
 
 ## Features:
 - **Portable Mode**: The shell operates in Portable mode, meaning it can be used without installation.
@@ -18,6 +18,6 @@ Hello, developers! **WinShell Cmd 2.66** will be released *30 December 2023* bec
 - **Ls** or **dir**: Shows the contents of the current directory.
 - **Exit** or **end**: Exits the shell.
 
-If you're modifying the project's code, be sure to add the original attribution: "Original: WinShell by WinXP655."
+If you're modifying the project's code, be sure to add the original attribution: "Original: Win BatchBox by WinXP655."
 
 Remember that not specifying the original name and author would violate the terms of the **MIT License**!
