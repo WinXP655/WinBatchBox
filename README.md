@@ -1,7 +1,5 @@
 # Win BatchBox
 
-Hello, developers! **WinShell Cmd 2.66** will be released *30 December 2023* because I want to add many features. This version will have new branding - **Win BatchBox**
-
 **Win BatchBox** is a command-line shell designed for **Windows**. It is written in **Batch** and provides not only basic commands for system management, but a lot of other commands that can be useful.
 
 ## Features:
