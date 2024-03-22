@@ -107,13 +107,6 @@ if /i "%command%"=="goto" (
 	echo %date% %time% - Invalid "goto" using: "%command%" >> error.log
 	goto shell
 )
-if /i "%command%"=="goto " (
-	echo =============Error!=============
-	echo - Goto allowed only for "goto test1"
-	echo - Error logged in error.log
-	echo.
-	echo %date% %time% - Invalid "goto" using: "%command%" >> error.log
-	goto shell
 )
 if /i "%command%"=="exit" goto eof
 if /i "%command%"=="end" goto eof
@@ -256,6 +249,10 @@ if /i "%command%"=="randnum" (
 if /i "%command%"=="hello" (
 	echo Hello, world!
 	echo.
+	goto shell
+)
+if /i "%input:~0,5%"=="wait:"(
+	ping localhost -n %input:~5% >nul
 	goto shell
 )
 if /i "%command%"=="crash" (
