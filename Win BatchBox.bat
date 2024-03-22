@@ -107,6 +107,14 @@ if /i "%command%"=="goto" (
 	echo %date% %time% - Invalid "goto" using: "%command%" >> error.log
 	goto shell
 )
+if /i "%command%"=="goto" (
+	echo =============Error!=============
+	echo - Goto allowed only for "goto test1"
+	echo - Error logged in error.log
+	echo.
+	echo %date% %time% - Invalid "goto" using: "%command%" >> error.log
+	goto shell
+)
 )
 if /i "%command%"=="exit" goto eof
 if /i "%command%"=="end" goto eof
