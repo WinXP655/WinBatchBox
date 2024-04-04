@@ -1,5 +1,5 @@
 @echo off
-setlocal
+setlocal enabledelayedexpansion
 set "sdeb=0"
 :startup_debug
 if "%sdeb%"=="1" (
@@ -20,7 +20,7 @@ goto isAdmin
 :welcome
 echo ==========Welcome to Win BatchBox==========
 echo - To see new features - enter command "whatnew"
-echo - Compile date: 
+echo - Compile date: 4 April 2024, 20:52
 echo - Is Admin: %admin%
 echo.
 goto shell
@@ -118,8 +118,8 @@ if /i "%command%"=="goto " (
 if /i "%command%"=="exit" goto eof
 if /i "%command%"=="end" goto eof
 if /i "%command%"=="start_sdeb" goto start_sdeb
-if /I "help" == "isadmin" (
-	echo - Rights: False
+if /I "%command%" == "isadmin" (
+	echo - Rights: %admin%
 	echo.
 	goto shell
 )
@@ -153,8 +153,10 @@ if /i "%command%"=="help" (
 	echo - Pctest: perfomance test
 	echo - Exp_rest: restart explorer
 	echo - Copytext: just fun command
-	echo - Com_hist: command history
+	echo Cmdhist: command history
 	rem echo - Start_sdeb: enable Start-Up debug. This is only for developers. Last session will be erased
+	echo Guessnumber: guess number game
+	echo timer: timer, nothing special
 	echo To get Command Prompt help - enter "Help.exe"
 	echo.
 	echo =================Aliases================
@@ -162,7 +164,6 @@ if /i "%command%"=="help" (
 	echo - Ls: lists content of directory. Alias to "dir"
 	echo - Cmd: run Command prompt. Alias to "cmd.exe"
 	echo - Powershell: run Powershell. Alias to "powershell.exe"
-	echo - Suspend: suspend shell executing. Alias to "pause"
 	echo.
 	echo ============User rights mark============
 	echo # - administrator rights
@@ -171,9 +172,9 @@ if /i "%command%"=="help" (
 	goto shell
 )
 if /i "%command%"=="ver" (
-	echo ===========Win BatchBox v2.6.8.6==========
+	echo ===========Win BatchBox v2.6.9.7==========
 	echo - Creator: WinXP655
-	echo - Compile date: 3 December 2023 21:00
+	echo - Compile date: 4 April 2024, 20:52
 	echo - License: MIT public license
 	echo - Download last version: https://github.com/WinXP655/WinBatchBox/releases
 	echo - Shell is incompatible: Windows 9x, NT lower Win2000, Linux
@@ -388,12 +389,6 @@ if /i "%command%"=="verify_off" (
 	echo.
 	goto shell
 )
-if /i "%command%"=="suspend" (
-	echo =============Pause==============
-	pause
-	echo.
-	goto shell
-)
 if /i "%command%"=="pause" (
 	echo =============Pause==============
 	pause
@@ -436,38 +431,58 @@ if /i "%command%"=="fbsod" (
 if /i "%command%"=="pctest" (
 	goto pctest
 )
-if /i "%command%"=="exp_rest" (
+if /i "%command%"=="explorerrst" (
 	echo =======Restarting explorer======
 	taskkill /f /im explorer.exe
 	start explorer
 )
-if /i "%command%"=="copytext" (
-	echo ============Copytext============
-	echo - If you want to back to the shell - enter "back"
-	goto copytext
-)
-if /i "%command%"=="com_hist" (
-	echo =========Command history========
+if /i "%command%"=="cmdhist" (
 	doskey /history
 	echo.
 	goto shell
 )
+if /i "%command:~0,5%"=="timer" (
+	set "timerInput=%command:~6%"
+	call :startTimer !timerInput!
+)
+if /i "%command%"=="guessnumber" (
+    call :guessNumber
+)
+if /i "%command%"=="timedate" (
+    echo Current date and time: %date% %time%
+    echo.
+	goto shell
+)
+if /i "%command:~0,5%"=="kill " (
+    taskkill /F /IM "%command:~5%"
+    echo.
+	goto shell
+)
+if /i "%command%"=="network" (
+    netsh wlan show networks
+    echo.
+	goto shell
+)
+if /i "%command%"=="networkall" (
+    netsh wlan show profiles
+    echo.
+	goto shell
+)
+if /i "%command%"=="networksec" (
+    set /p "wifiname=Enter Wifi Name: "
+	netsh wlan show profiles "!wifiname!" key=clear
+    echo.
+	goto shell
+)
 if /i "%command%"=="whatnew" (
 	echo ======New in this version=======
-	echo - 1. New branding
-	echo - 2. Versioning is changed: x.y.z.a
-	echo    x - Main version
-	echo    y - Minor version
-	echo    z - Release
-	echo    a - Patch
-	echo - 3. New feature - Start-Up debug
-	echo - 4. New command - fbsod, pctest, exp_rest, copytext, com_hist
-	echo - 5. Protection from "&" and "&&"
-	echo - 6. Protection from invalid using of "goto"
-	echo Good luck using Win BatchBox 2.6.8.6!
+	echo 1. New command - guessnumber, timer, calc, timedate, kill, network, networkall, networksec
+	echo 2. Deleted command - copytext, suspend
+	echo Good luck using Win BatchBox 2.6.9.7!
 	echo.
 	goto shell
 )
+
 %command%
 echo.
 set command=
@@ -497,7 +512,7 @@ echo select Safe Mode.
 echo.
 echo Technical information:
 echo.
-echo *** STOP: 0x00000000D1 (0x00000000C, 0x000000002, 0x000000000, 0xF86B5A89)
+echo *** STOP: 0x000000D1 (0x0000000C, 0x00000002, 0x00000000, 0xF86B5A89)
 echo *** null.sys - Address F86B5A89 base at F86B5000, DateStamp 3dd991eb
 echo.
 echo Beginning dump of physical memory
@@ -514,21 +529,8 @@ if exist log.txt (
 	ren log.txt log%random%.old
 )
 setlocal enabledelayedexpansion
-echo ==========PC Tester==========
+echo PC Tester
 echo - Log will be saved as: %cd%\log.txt
-echo Level choice
-echo.
-echo - 5 laps: Poor
-echo - 10 laps: Low
-echo - 50 laps: Moderate
-echo - 75 laps: Harder
-echo - 100 laps: More Harder
-echo - 150 laps: Hard
-echo - 500 laps: More Hard
-echo - 1000 laps: Insane
-echo - 5000 laps: More Insane
-echo - 10000 laps: Cool. This is recommended maximum
-echo You can enter also a custom laps
 echo.
 :m
 set /p lap=Enter number of repeats(laps): 
@@ -559,7 +561,7 @@ for /L %%i in (1,1,%lap%) do (
     )
     echo !randomString! >> log_randnum.txt
     echo Lap: %%i/%lap% - completed! >> log.txt
-    echo Lap %%i of %lap% completed.
+    echo %%i/%lap%
 )
 REM End the timer
 for /f "tokens=1-4 delims=:.," %%a in ("%time%") do (
@@ -572,35 +574,67 @@ echo Test completed. Time: %elapsed% seconds. Laps: %lap%
 echo.
 goto shell
 
-:copytext
-set /p text=? 
-if /i "%text%"=="back" goto shell
-echo %text%
-goto copytext
+:startTimer
+set "timer=%1"
+set /a "elapsedTime=0"
 
-:start_sdeb
-if "%sdeb%"=="1" (
-	echo %date% %time% - Start-Up debug already enabled >> error.log
-	goto shell
-)
-echo Are you sure to enable Start-Up debug? (y/n)
-echo WARNING! This feature only for developers!
-set /p user_input=
-if /I "%user_input%"=="y" (
-	set sdeb=1
-	cls
-	echo Cleaning screen completed
-	echo Erasing last session
-	set admin=
-	set command=
-	set prmpt=
-	set text=
-	echo Last session erased.
-	goto startup_debug
+echo Timer set for %timer% seconds.
+
+:timerLoop
+timeout /nobreak /t 1 >nul
+set /a "elapsedTime+=1"
+
+if %elapsedTime% lss %timer% (
+    goto timerLoop
 ) else (
-	echo Back to shell.
+    echo Timer expired after %timer% seconds.
+	echo.
+    goto :shell
 )
-goto shell
+
+:guessNumber
+set /a "targetNum=!random! %% 100 + 1"
+set /a "attempts=0"
+
+echo Welcome to Guess the Number!
+echo I've picked a number between 1 and 100.
+echo Try to guess it!
+echo.
+
+:guessLoop
+set /p "userGuess=Your guess: "
+set /a "attempts+=1"
+
+if %userGuess% lss %targetNum% (
+    echo Too low! Try again.
+    goto guessLoop
+) else if %userGuess% gtr %targetNum% (
+    echo Too high! Try again.
+    goto guessLoop
+) else (
+    echo Congratulations! You guessed the number %targetNum% in %attempts% attempts.
+    echo.
+    goto :shell
+)
+
+:calculator
+cls
+echo Calculator
+echo.
+set /p "expression=Enter expression (type 'exit' to return to shell): "
+
+if "!expression!"=="exit" (
+    echo Exiting to shell
+    echo.
+    goto :shell
+)
+
+set /a "!result!=!expression!"
+
+echo Result: !result!
+pause
+echo.
+goto :calculator
 
 :eof
 echo =============Exiting=============
