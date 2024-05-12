@@ -6,6 +6,8 @@
 
 Development state: **Unsupported**🔴
 
+Because of this situation, **issues and pull requests are not accepted anymore**
+
 ## Features:
 - **Portable Mode**: The shell operates in Portable mode, meaning it can be used without installation.
 - **No Installation Required**: No need for installation—simply run the shell.
