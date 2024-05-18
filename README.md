@@ -2,6 +2,8 @@
 
 **Win BatchBox** is a command-line shell designed for **Windows**. It is written in **Batch** and provides not only basic commands for system management, but a lot of other commands that can be useful.
 
+New owner: https://github.com/ArtikLamartik/WinBatchBox
+
 *02.28.2023 - 05.12.2024* (MM.DD.YYYY)
 
 Development state: **Unsupported**🔴
